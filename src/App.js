@@ -5,7 +5,8 @@ import Header from './components/Header';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
 
-import './css/Todo.css';
+import './index.css';
+import './App.css';
 const isNotCheckedAll = (todos = []) => todos.find((todo) => !todo.isCompleted);
 
 const filterByStatus = (todos = [], status = '', id = '') => {
@@ -15,7 +16,7 @@ const filterByStatus = (todos = [], status = '', id = '') => {
         case 'COMPLETED':
             return todos.filter((todo) => todo.isCompleted);
         case 'REMOVE':
-            return todos.filter((todo) => todo.id != id);
+            return todos.filter((todo) => todo.id !== id);
         default:
             return todos;
     }
@@ -91,7 +92,7 @@ class App extends PureComponent {
         const { todoList, todoEditingId, isCheckedAll, status } = this.state;
 
         return (
-            <div className="todoapp">
+            <div className="w-[500px] bg-white my-[130px] mx-auto relative shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]">
                 <Header addTodo={this.addTodo} isCheckedAll={isCheckedAll} />
                 <TodoList
                     todoList={filterByStatus(todoList, status)}

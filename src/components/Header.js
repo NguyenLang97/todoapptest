@@ -17,13 +17,14 @@ const Header = (props) => {
 
     return (
         <header className="header">
-            <h1>todos</h1>
+            <h1 className="absolute top-[-146px] w-[100%] text-[100px] font-[480] text-center text-[#af2f2f26]">todos</h1>
             <input
-                className="new-todo"
+                className="placeholder:italic placeholder:opacity-0.00002 relative outline-none m-0 w-[100%] text-[24px] font-[inherit] leading-[1.4rem] p-[6px] shadow-[inset_0_-1px_5px_0_rgba(0,0,0,0.2)] box-border py-[16px] pr-[16px] pl-[60px] bg-[#00000001] shadow-[inset_0_-2px_1px_rgba(0,0,0,0.03)]"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={(e) => onAddTodo(e)}
                 checked={isCheckedAll}
+                placeholder="What needs to be done ?"
             />
         </header>
     );
