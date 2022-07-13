@@ -1,12 +1,16 @@
 import React, { PureComponent } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 
 // Components
 import Header from './components/Header';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
 
+// CSS
 import './index.css';
 import './App.css';
+
 const isNotCheckedAll = (todos = []) => todos.find((todo) => !todo.isCompleted);
 
 const filterByStatus = (todos = [], status = '', id = '') => {
@@ -48,6 +52,7 @@ class App extends PureComponent {
     onEditTodo = (todo, index) => {
         if (index >= 0) {
             const { todoList: list } = this.state;
+            // const list = [...this.state.todoList]
             list.splice(index, 1, todo);
             this.setState({ todoList: list, todoEditingId: '' });
         }
@@ -92,26 +97,28 @@ class App extends PureComponent {
         const { todoList, todoEditingId, isCheckedAll, status } = this.state;
 
         return (
-            <div className="w-[500px] bg-white my-[130px] mx-auto relative shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]">
-                <Header addTodo={this.addTodo} isCheckedAll={isCheckedAll} />
-                <TodoList
-                    todoList={filterByStatus(todoList, status)}
-                    getTodoEditingId={this.getTodoEditingId}
-                    todoEditingId={todoEditingId}
-                    onEditTodo={this.onEditTodo}
-                    markCompleted={this.markCompleted}
-                    isCheckedAll={isCheckedAll}
-                    checkAlltodos={this.checkAlltodos}
-                    removeTodo={this.removeTodo}
-                />
-                <Footer
-                    setStatusFilter={this.setStatusFilter}
-                    status={status}
-                    clearComplete={this.clearComplete}
-                    numOfTodos={todoList.length}
-                    numOfTodosLeft={filterByStatus(todoList, 'ACTIVE').length}
-                />
-            </div>
+            <Provider store={store}>
+                <div className="w-[500px] bg-white my-[130px] mx-auto relative shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]">
+                    <Header todoList={todoList} addTodo={this.addTodo} isCheckedAll={isCheckedAll} />
+                    <TodoList
+                        todoList={filterByStatus(todoList, status)}
+                        getTodoEditingId={this.getTodoEditingId}
+                        todoEditingId={todoEditingId}
+                        onEditTodo={this.onEditTodo}
+                        markCompleted={this.markCompleted}
+                        isCheckedAll={isCheckedAll}
+                        checkAlltodos={this.checkAlltodos}
+                        removeTodo={this.removeTodo}
+                    />
+                    <Footer
+                        setStatusFilter={this.setStatusFilter}
+                        status={status}
+                        clearComplete={this.clearComplete}
+                        numOfTodos={todoList.length}
+                        numOfTodosLeft={filterByStatus(todoList, 'ACTIVE').length}
+                    />
+                </div>
+            </Provider>
         );
     }
 }

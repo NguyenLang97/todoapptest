@@ -43,7 +43,7 @@ const Todo = (props) => {
                 </div>
             ) : (
                 <input
-                    className="relative m-0 w-[100%] text-[24px] font-[inherit] leading-[1.4rem] p-[6px] border border-solid border-[#999] shadow-[inset_0_-1px_5px_0_rgba(0,0,0,0.2)] box-border hidden block w-[90%] py-[12px] px-[16px] my-0 mr-0 ml-[10%] "
+                    className="relative m-0 w-[100%] text-[24px] font-[inherit] leading-[1.4rem] p-[6px] border border-solid border-[#999] shadow-[inset_0_-1px_5px_0_rgba(0,0,0,0.2)] box-border block w-[90%] py-[12px] px-[16px] my-0 mr-0 ml-[10%] "
                     type="text"
                     value={text}
                     onChange={(e) => setText(e.target.value)}

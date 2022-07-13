@@ -1,10 +1,10 @@
-const INITIAL_STATE = {}
+const INITIAL_STATE = { todoList: [], todoEditingId: '', isCheckedAll: false, status: 'ALL' };
 
-const todosReducers = (state: INITIAL_STATE, action) => {
+const todosReducers = (state= INITIAL_STATE, action) => {
     switch (action.type) {
-        case:
-        default: 
-        return state    }
-}
+        default:
+            return state;
+    }
+};
 
-export default todosReducers
+export default todosReducers;
