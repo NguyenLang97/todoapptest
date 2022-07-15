@@ -25,9 +25,12 @@ const filterByStatus = (todos = [], status = '', id = '') => {
             return todos;
     }
 };
+const initStoreage = JSON.parse(localStorage.getItem('TODO')) || []
+console.log(initStoreage)
+
 class App extends PureComponent {
     state = {
-        todoList: [],
+        todoList: initStoreage,
         todoEditingId: '',
         isCheckedAll: false,
         status: 'ALL',

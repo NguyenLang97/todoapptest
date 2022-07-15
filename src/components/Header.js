@@ -1,5 +1,5 @@
 import React from 'react';
-import { memo, useState, useRef } from 'react';
+import { memo, useState, useRef , useEffect } from 'react';
 
 const Header = (props) => {
     const nameRef = useRef();
@@ -9,8 +9,8 @@ const Header = (props) => {
         const newText = text.trim();
         console.log(todoList);
         const checkItemSimilar =
-            todoList.length > 0 ? !(todoList.filter((todo) => todo.text == newText).length >= 1) : true;
-        if (e.key === 'Enter' && newText != '' && checkItemSimilar) {
+            todoList.length > 0 ? !(todoList.filter((todo) => todo.text === newText).length >= 1) : true;
+        if (e.key === 'Enter' && newText !== '' && checkItemSimilar) {
             addTodo({
                 id: new Date().valueOf(),
                 text: newText,
@@ -20,6 +20,9 @@ const Header = (props) => {
             nameRef.current.focus();
         }
     };
+    useEffect (()=>{
+        localStorage.setItem('TODO' , JSON.stringify(todoList))
+    },[todoList,addTodo])
 
     return (
         <header className="header">
